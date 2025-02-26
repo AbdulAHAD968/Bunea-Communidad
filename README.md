@@ -3,12 +3,12 @@ Welcome to **Bunea-Communidad** meaning Good Community, a platform dedicated to 
 
 ---
 
-## 📢 About Bunea-Communidad  
+## About Bunea-Communidad  
 Bunea-Communidad is built on the foundation of **inclusivity, innovation, and impact**. Whether you're an **NGO, activist, volunteer, or changemaker**, this platform connects you to the resources, opportunities, and people that can **make a difference**.  
 
 ---
 
-## 🎯 Our Mission  
+## Our Mission  
 🔹 Bridge the gap between **communities and resources**  
 🔹 Promote the **UN Sustainable Development Goals (SDGs)**  
 🔹 Foster **collaboration & engagement** for social good  
@@ -16,7 +16,7 @@ Bunea-Communidad is built on the foundation of **inclusivity, innovation, and im
 
 ---
 
-## 🔥 Key Features  
+## Key Features  
 ✅ **Community Hub** – Connect with like-minded individuals and organizations  
 ✅ **Resource Sharing** – Discover & contribute valuable knowledge  
 ✅ **Sustainable Initiatives** – Engage in meaningful projects for social impact 
@@ -47,7 +47,7 @@ We are committed to the **United Nations' 2030 Agenda** and work towards achievi
 
 ---
 
-## 💡 How to Get Involved  
+## How to Get Involved  
 📌 **Join the Community** – Sign up and participate in discussions  
 📌 **Contribute** – Share ideas, resources, and solutions  
 📌 **Collaborate** – Work together on sustainable projects  
@@ -55,7 +55,7 @@ We are committed to the **United Nations' 2030 Agenda** and work towards achievi
 
 ---
 
-## 🛠 Tech Stack  
+## Tech Stack  
 🖥 **Frontend**: HTML, CSS, JavaScript  
 ⚙ **Backend**: Node.js 
 ☁ **Hosting**: GitHub Pages (yes its a static website) 
@@ -93,7 +93,7 @@ Errors and omissions are accepted!
 
 ---
 
-## 🤖 Credits
+## Credits
 
 Built with ❤️ by a passionate team of developers.
 The one and only **Abdul Ahad (^-^)**.
@@ -106,7 +106,7 @@ Feel free to **fork**, **contribute**, or **share your thoughts**! 🌟
 
 ---
 
-## 🚀 Getting Started  
+## Getting Started  
 1️⃣ **Clone the Repository**  
 ```bash
 git clone https://github.com/AbdulAHAD968/Bunea-Communidad.git
