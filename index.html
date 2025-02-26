@@ -191,7 +191,7 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background:#000;
+            background: black;;
             margin: 0;
             box-sizing: border-box;
         }
@@ -513,11 +513,12 @@
         
         .falling-star {
             position: absolute;
-            top: -10px;
+            top: -5px;
             background-color: white;
             border-radius: 50%;
             box-shadow: 0px 0px 10px 3px rgba(255, 255, 255, 0.9); /* Increased glow */
-            animation: fall 2s linear forwards;
+            animation: fall 3s linear forwards;
+            z-index: 1000;
         }
 
 
@@ -756,7 +757,7 @@
         .sdg-heading-container {
             position: relative;
             text-align: center;
-            margin-bottom: 10px;
+            margin-bottom: 0px;
             z-index: 10;
             padding: 10px;
         }
@@ -769,7 +770,7 @@
             letter-spacing: 2px;
             text-shadow: 2px 2px 4px rgba(199, 198, 192, 0.664);
             margin: 0;
-            padding: 10px 20px;
+            padding: 4px 8px;
             display: inline-block;
             transition: all 0.4s ease;
         }
@@ -1453,7 +1454,7 @@
 
                 const size = Math.random() * 3 + 3;
                 const startPosX = Math.random() * window.innerWidth;
-                const duration = Math.random() * 3 + 5;
+                const duration = Math.random() * 3 + 6;
 
                 star.style.width = `${size}px`;
                 star.style.height = `${size}px`;
@@ -1465,7 +1466,7 @@
 
                 setTimeout(() => {
                     star.remove();
-                }, duration * 2000);
+                }, duration * 2500);
             }
 
             function GEN_STARS() {
