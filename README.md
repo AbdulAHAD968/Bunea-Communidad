@@ -1,4 +1,6 @@
 # 🌍 Bunea-Communidad
+<img source="Good-Community.png"></img>
+
 Welcome to **Bunea-Communidad** meaning Good Community, a platform dedicated to **empowering communities**, **fostering collaboration**, and **driving sustainable change**! 🚀  
 
 ---
