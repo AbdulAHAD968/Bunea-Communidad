@@ -1,7 +1,5 @@
 # 🌍 Bunea-Communidad
-<p>
-  <img src="Good-Community.png" alt="just the ss of home page">
-</p>
+<img src="Good-Community.PNG" alt="The cover image">
 
 Welcome to **Bunea-Communidad** meaning Good Community, a platform dedicated to **empowering communities**, **fostering collaboration**, and **driving sustainable change**! 🚀  
 
