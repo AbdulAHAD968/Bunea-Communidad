@@ -1,0 +1,92 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hanging Weighing Scale</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+        .container {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .beam {
+            position: relative;
+            width: 300px;
+            height: 10px;
+            background: black;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .base {
+            width: 20px;
+            height: 190px;
+            background: black;
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .hanger {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            top: 0; /* Adjust dynamically */
+            transition: top 1s ease-in-out;
+        }
+        .wire {
+            width: 2px;
+            background: black;
+            height: 50px;
+            transition: height 1s ease-in-out;
+        }
+        .plate {
+            width: 80px;
+            height: 10px;
+            background: gray;
+            border-radius: 10px;
+            margin-top: 5px;
+            transition: transform 1s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="base"></div>
+        <div class="beam">
+            <div class="hanger" id="leftHanger">
+                <div class="wire" id="leftWire"></div>
+                <div class="plate" id="leftPlate"></div>
+            </div>
+            <div class="hanger" id="rightHanger">
+                <div class="wire" id="rightWire"></div>
+                <div class="plate" id="rightPlate"></div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function animatePlates() {
+            document.getElementById('leftWire').style.height = '70px';
+            document.getElementById('leftPlate').style.transform = 'translateY(10px)';
+            document.getElementById('leftHanger').style.top = '10px'; // Move hanger down
+            
+            document.getElementById('rightWire').style.height = '30px';
+            document.getElementById('rightPlate').style.transform = 'translateY(-10px)';
+            document.getElementById('rightHanger').style.top = '-10px'; // Move hanger up
+        }
+
+        setTimeout(animatePlates, 1000);
+        ut(animatePlates, 1000);
+    </script>
+</body>
+</html> -->
