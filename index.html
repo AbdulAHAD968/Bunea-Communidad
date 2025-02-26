@@ -75,8 +75,7 @@
 
         /* Dark Mode */
         body.dark-mode {
-            background-color: #222;
-            color: white;
+            background-color: #000;
         }
 
         body.dark-mode header{
@@ -87,9 +86,9 @@
             background: linear-gradient(43deg, #0A1F3E 0%, #1E3A2F 46%, #D4A017 100%);
         }
 
-        body.dark-mode{
+        /* body.dark-mode{
             background: linear-gradient(43deg, #0A1F3E 0%, #1E3A2F 46%, #D4A017 100%);
-        }
+        } */
 
         /* Dark mode styles */
         body.dark-mode h3{
@@ -190,26 +189,28 @@
 
     <!-- GENERAL STYLING -->
     <style>
-
-        body{
+        body {
             font-family: Arial, sans-serif;
-            background: linear-gradient(43deg, rgb(14, 49, 120) 0%, #34A853 46%, #ffbf00 100%);
+            background:#000;
+            margin: 0;
+            box-sizing: border-box;
         }
-
+    
         h3 {
             font-size: clamp(22px, 3vw, 26px);
             font-weight: bold;
             color: #ffc802;
             margin-bottom: 10px;
             text-shadow: 2px 2px 4px rgba(178, 177, 177, 0.604);
+            word-wrap: break-word;
         }
-
+    
         ul {
             list-style: square;
             padding-left: 1.5em;
             margin: 1.5rem 0;
         }
-
+    
         ul li {
             font-size: clamp(20px, 2vw, 24px);
             align-items: center;
@@ -220,15 +221,19 @@
             border-radius: 8px;
             transition: all 0.3s ease;
             cursor: pointer;
+            box-sizing: border-box;
+            width: 100%;
+            max-width: 100%;
+            word-wrap: break-word;
         }
-
+    
         ul li:hover {
             background-color: #34A853;
             color: #FFFFFF;
             transform: translateX(10px);
             box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
         }
-
+    
         ul li::before {
             content: "•";
             color: #1A73E8;
@@ -236,19 +241,39 @@
             margin-right: 0.5em;
             vertical-align: middle;
         }
+    
+        /* Media Queries for Windows Scaling Issues */
+        @media screen and (max-width: 768px) {
+            h3 {
+                font-size: clamp(20px, 3vw, 24px);
+            }
+    
+            ul li {
+                font-size: clamp(18px, 2vw, 22px);
+            }
+        }
+    
+        @media screen and (max-width: 480px) {
+            h3 {
+                font-size: clamp(18px, 3vw, 22px);
+            }
+    
+            ul li {
+                font-size: clamp(16px, 2vw, 20px);
+            }
+        }
     </style>
 
     <!-- SLIDES COMPONENT STYLING -->
     <style>
-
         .container {
-            position: relative; /* Important to position absolute elements properly */
+            position: relative;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            overflow: hidden; /* Prevent overflow issues */
-            background: black; /* Uncomment for visibility */
+            overflow: hidden;
+            background: black;
         }
 
         /* Swiper Slide Styling */
@@ -261,8 +286,8 @@
         .swiper-slide {
             flex-direction: column;
             display: flex;
-            align-items:center;
-            justify-content:center;
+            align-items: center;
+            justify-content: center;
             font-size: 20px;
             font-weight: bold;
             color: white;
@@ -283,7 +308,7 @@
         .swiper-slide:hover {
             transform: scale(1.05);
         }
-        
+
         .swiper-slide::before {
             content: "";
             position: absolute;
@@ -315,7 +340,7 @@
             opacity: 0;
         }
 
-        /* text manupulation */
+        /* text manipulation */
         .container p {
             font-size: clamp(23px, 3vw, 36px);
             font-weight: bold;
@@ -328,6 +353,67 @@
 
         .swiper-slide span {
             font-size: clamp(20px, 2vw, 24px);
+        }
+
+        /* Media Queries for Mobile View */
+        @media (max-width: 768px) {
+            .container {
+                height: auto; /* Adjust height for smaller screens */
+                padding: 20px; /* Add some padding */
+            }
+
+            .swiper {
+                width: 90%; /* Increase width for better visibility */
+                height: auto; /* Adjust height for smaller screens */
+            }
+
+            .swiper-slide {
+                font-size: 16px; /* Decrease font size for smaller screens */
+                padding: 15px; /* Add padding for better spacing */
+            }
+
+            .swiper-slide strong {
+                font-size: 18px; /* Adjust strong tag font size */
+            }
+
+            .swiper-slide span {
+                font-size: 14px; /* Adjust span font size */
+            }
+
+            .container p {
+                font-size: clamp(18px, 4vw, 28px); /* Adjust paragraph font size */
+            }
+
+            .swiper p {
+                font-size: clamp(18px, 4vw, 28px); /* Adjust swiper paragraph font size */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .swiper {
+                width: 95%; /* Further increase width for very small screens */
+            }
+
+            .swiper-slide {
+                font-size: 14px; /* Further decrease font size for very small screens */
+                padding: 10px; /* Adjust padding */
+            }
+
+            .swiper-slide strong {
+                font-size: 16px; /* Further adjust strong tag font size */
+            }
+
+            .swiper-slide span {
+                font-size: 12px; /* Further adjust span font size */
+            }
+
+            .container p {
+                font-size: clamp(16px, 5vw, 24px); /* Further adjust paragraph font size */
+            }
+
+            .swiper p {
+                font-size: clamp(16px, 5vw, 24px); /* Further adjust swiper paragraph font size */
+            }
         }
     </style>
 
@@ -473,6 +559,11 @@
 
     <!-- DROP_DOWN LIST HERE -->
     <style>
+
+        html {
+            scroll-behavior: smooth;
+        }
+
         /* Floating Button */
         .floating-button {
             position: fixed;
@@ -557,7 +648,7 @@
 
         /* Dark Mode Adjustments */
         body.dark-mode .dropdown-list {
-            background-color: #2C2C2C;
+            background-color:#000;
         }
 
         body.dark-mode .dropdown-item {
@@ -599,6 +690,7 @@
 
         .search-input::placeholder {
             color: #888;
+            cursor: alias;
         }
         
         .search-button {
@@ -661,30 +753,27 @@
 
     <!-- HEADING'S -->
     <style>
-        /* Container for the heading */
         .sdg-heading-container {
-            position: absolute;
-            top: 20%;
-            left: 8.5%;
-            z-index: 10;
-        }
-
-        /* SDG Heading Styling */
-        .sdg-heading {
+            position: relative;
             text-align: center;
+            margin-bottom: 10px;
+            z-index: 10;
+            padding: 10px;
+        }
+    
+        .sdg-heading {
             font-family: 'Montserrat', sans-serif;
             font-size: 48px;
             font-weight: 700;
             color: #34A853;
             letter-spacing: 2px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            text-shadow: 2px 2px 4px rgba(199, 198, 192, 0.664);
             margin: 0;
             padding: 10px 20px;
             display: inline-block;
             transition: all 0.4s ease;
         }
-
-        /* Add a hover effect */
+    
         .sdg-heading:hover {
             color: #2D9147;
             transform: scale(1.02);
@@ -692,17 +781,26 @@
             cursor: pointer;
             box-shadow: 2px 2px 8px rgba(255, 203, 61, 0.67);
         }
-
-        /* Mobile Responsiveness */
+    
+        .swiper-container {
+            position: relative;
+            padding-top: 20px;
+        }
+    
         @media (max-width: 768px) {
             .sdg-heading {
                 font-size: 32px;
                 padding: 8px 16px;
             }
-
+    
             .sdg-heading-container {
-                top: 15%;
-                left: 5%;
+                top: auto;
+                left: auto;
+                margin-bottom: 10px;
+            }
+    
+            .swiper-container {
+                padding-top: 10px;
             }
         }
     </style>
@@ -865,7 +963,7 @@
     
 
     <!-- SDG'S CONTAINER -->
-    <div class="container">
+    <div class="container" id="first-head">
 
         <!-- Swiper Container -->
         <div class="swiper mySwiper">
@@ -1279,23 +1377,36 @@
                 nextEl: ".swiper-button-next",
                 prevEl: ".swiper-button-prev",
             },
+            // Breakpoints for responsive design
+            breakpoints: {
+                // When window width is >= 320px
+                320: {
+                    slidesPerView: 1,
+                    spaceBetween: 10,
+                },
+                // When window width is >= 768px
+                768: {
+                    slidesPerView: 2,
+                    spaceBetween: 20,
+                },
+            },
         });
     
         document.querySelectorAll(".mySwiper .swiper-slide").forEach((slide) => {
             let glow = document.createElement("div");
             glow.classList.add("glow");
             slide.appendChild(glow);
-
+    
             slide.addEventListener("mousemove", (event) => {
                 let rect = slide.getBoundingClientRect();
                 let x = event.clientX - rect.left;
                 let y = event.clientY - rect.top;
                 let centerX = rect.width / 2;
                 let centerY = rect.height / 2;
-
+    
                 let rotateX = (centerY - y) / 15;
                 let rotateY = (x - centerX) / 15;
-
+    
                 slide.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
                 
                 // Move glow with cursor
@@ -1304,18 +1415,16 @@
                 glow.style.opacity = "1";
                 glow.style.transform = "translate(-50%, -50%) scale(2)";
             });
-
+    
             slide.addEventListener("mouseleave", () => {
                 slide.style.transition = "transform 0.3s ease-out";
                 slide.style.transform = "perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)";
-
+    
                 // Hide glow smoothly
                 glow.style.opacity = "0";
                 glow.style.transform = "translate(-50%, -50%) scale(0)";
             });
         });
-
-    
     </script>
 
     <!-- THEME TOGGLE -->
@@ -1402,24 +1511,29 @@
         // Action handler function
         function handleAction(action) {
             switch (action) {
-                case 'community':
-                alert('Navigating to Community Participation section...');
-                // window.location.href = '#community';
-                break;
-                case 'ngo-experiences':
-                alert('Navigating to NGO Experiences section...');
-                // window.location.href = '#ngo-experiences';
-                break;
-                case 'find-ngos':
-                alert('Opening NGO Finder...');
-                // window.location.href = '/find-ngos';
-                break;
-                case 'sdgs':
-                alert('Navigating to Sustainable Development Goals section...');
-                // window.location.href = '#sdgs';
-                break;
-                default:
-                console.log('No action defined for:', action);
+                case 'community':{
+                    window.location.href = '#first-head';
+                    break;
+                }
+                case 'ngo-experiences':{
+                    // alert('Navigating to NGO Experiences section...');
+                    window.location.href = '#first-head';
+                    break;
+                }
+                case 'find-ngos':{
+                    //alert('Opening NGO Finder...');
+                    window.location.href = '#first-head';
+                    break;
+                }
+                case 'sdgs':{
+                    //alert('Navigating to Sustainable Development Goals section...');
+                    window.location.href = '#first-head';
+                    break;
+                }
+                default:{
+                    console.log('No action defined for:', action);
+                    break;
+                }
             }
         }
     </script>
@@ -1431,6 +1545,36 @@
             const query = document.querySelector('.search-input').value;
             if (query){
                 alert('Searching for:', query);
+            }
+        });
+    </script>
+
+    <!-- STOP RIGHT CLICK. -->
+    <script>
+        document.addEventListener("contextmenu", function(event) {
+            event.preventDefault();
+        });
+    </script>
+
+
+    <!-- DISABLE ALL THE KEYBOARD SHORTCUTS [FOR NON TECHNICAL PEOPLE, TECHNICAL PEOPLE DO HAVE ACCESS USING ADVANCE TOOLS] -->
+    <script>
+        document.addEventListener("keydown", function(event) {
+            if (event.ctrlKey && (event.key === "u" || event.key === "s" || event.key === "i" || event.key === "j")) {
+                event.preventDefault();
+            }
+            if (event.key === "F12") {
+                event.preventDefault();
+            }
+        });
+
+        document.addEventListener("keydown", function(event) {
+            if (
+                (event.ctrlKey && event.shiftKey && (event.key === "I" || event.key === "J" || event.key === "C")) || // Ctrl+Shift+I/J/C
+                (event.ctrlKey && event.key === "U") || // Ctrl+U
+                (event.key === "F12") // F12
+            ) {
+                event.preventDefault();
             }
         });
     </script>
