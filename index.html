@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
@@ -9,257 +8,225 @@
 
     <!-- Swiper CSS -->
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
-    
 
-    <!-- HEADER STYLING -->
     <style>
-        
-        *{
+
+        body {
+            font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-        }
-
-        p {
-            font-size: 20px;
-            font-weight: bolder;
-        }
-
-        /* Header Styling */
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            top: 0;
-            position: sticky;
-            background: linear-gradient(43deg, rgb(14, 49, 120) 0%, #34A853 46%, #ffbf00 100%);
-            padding: 20px;
-            /* border-radius: 6px; */
-            z-index: 1000; /* issy sub se uper rkho bai */
-        }
-
-        /* Day-Night Toggle Button */
-        .theme-switch {
-            width: 110px;
-            height: 50px;
-            background-color: #ffffff;
-            border-radius: 30px;
-            box-shadow: inset 0 0 5px 4px rgba(255, 255, 255, 1),
-                inset 0 0 20px 1px rgba(0, 0, 0, 0.488), 10px 20px 30px rgba(0, 0, 0, 0.096),
-                inset 0 0 0 3px rgba(0, 0, 0, 0.3);
-            display: flex;
-            align-items: center;
-            cursor: pointer;
-            position: relative;
-            transition: transform 0.4s;
-        }
-
-        /* 3-d hover animation */
-        .theme-switch:hover {
-            -webkit-transform: perspective(100px) rotateX(5deg) rotateY(-5deg);
-            transform: perspective(100px) rotateX(5deg) rotateY(-5deg);
-        }
-
-        /* Toggle Effect */
-        .theme-switch::before {
-            content: "";
-            position: absolute;
-            width: 35px;
-            height: 35px;
-            background: linear-gradient(130deg, #757272 10%, #ffffff 11%, #726f6f 62%);
-            border-radius: 50%;
-            top: 10px;
-            left: 10px;
-            box-shadow: 0 2px 1px rgba(0, 0, 0, 0.3), 10px 10px 10px rgba(0, 0, 0, 0.3);
-            transition: 0.4s;
-        }
-
-        /* Dark Mode */
-        body.dark-mode {
-            background-color: #000;
-        }
-
-        body.dark-mode header{
-            background: linear-gradient(43deg, #0A1F3E 0%, #1E3A2F 46%, #D4A017 100%);
-        }
-
-        body.dark-mode footer{
-            background: linear-gradient(43deg, #0A1F3E 0%, #1E3A2F 46%, #D4A017 100%);
-        }
-
-        /* body.dark-mode{
-            background: linear-gradient(43deg, #0A1F3E 0%, #1E3A2F 46%, #D4A017 100%);
-        } */
-
-        /* Dark mode styles */
-        body.dark-mode h3{
-            color: #34A853;
-        }
-        body.dark-mode ul li {
-            background: linear-gradient(315deg, #000000 0%, #414141 70%);
-            color: #E0E0E0;
-        }
-
-        body.dark-mode ul li:hover {
-            background: linear-gradient(315deg, #1E3A2F 0%, #facc36 70%);
-            color: #FFFFFF;
-            transform: translateX(10px);
-            box-shadow: 4px 4px 10px rgba(255, 255, 255, 0.1);
-        }
-
-        body.dark-mode p {
+            background: linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(44, 43, 43, 0.469)), url('child.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
             color: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
         }
 
-        body.dark-mode h3:hover {
-            color: #ffdd57;
-            transform: translateY(-2px);
-            text-shadow: 3px 3px 6px rgba(255, 255, 255, 0.4);
+        /* Toggle Button */
+        .sidebar-toggle {
+            position: fixed;
+            left: 10px;
+            top: 10px;
+            background: #0E3178;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 1001;
+            transition: background 0.3s;
         }
 
-        body.dark-mode #lower_parts{
-            background: #000;
+        .sidebar-toggle:hover {
+            background: #34A853;
         }
 
-        body.dark-mode .book{
-            
-            color: #E0E0E0;
-        }
-        body.dark-mode .cover{
-            background: linear-gradient(43deg, #0A1F3E 0%, #1E3A2F 46%, #D4A017 100%);
-            color: #E0E0E0;
-        }
-
-        /* When toggled */
-        .theme-switch.active::before {
-            left: 70px;
-            background: linear-gradient(315deg, #000000 0%, #414141 70%);
-        }
-
-        header h1{
-            font-size: 2rem;
-            color: rgb(255, 199, 45);
-            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        /* Sidebar */
+        .sidebar {
+            position: fixed;
+            left: -60px;
+            top: 75px;
+            width: 60px;
+            height: 45vh;
+            background: linear-gradient(180deg, #0E3178, #34A853, #ffbf00);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 20px;
+            z-index: 1000;
+            border-radius: 20px;
+            transition: left 0.3s;
+            animation: hover-animation 2s infinite;
         }
 
-        /* Mobile size */
+        .sidebar.active {
+            left: 0;
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            margin: 15px 0;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+
+        .nav-link svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        .nav-link .tooltip {
+            display: none;
+            position: absolute;
+            left: 100%;
+            margin-left: 10px;
+            background: rgba(255, 181, 33, 0.8);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            white-space: nowrap;
+            font-size: 14px;
+            z-index: 1000;
+            animation: hover-animation 1s infinite;
+        }
+
+        .nav-link:hover .tooltip {
+            display: block;
+        }
+
+        .container1 {
+            margin-left: 80px;
+            padding: 40px;
+            width: calc(100% - 80px);
+            max-width: 850px;
+            text-align: left;
+        }
+
+        .footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(10deg,  #ffbf00, #0E3178, #34A853);
+            color: white;
+            text-align: center;
+            padding: 15px 0;
+            font-size: 18px;
+            font-weight: bold;
+            z-index: 1000;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            transform: translateY(0%);
+            animation: hover-animation 3s infinite;
+        }
+
+        @keyframes hover-animation {
+            0% {
+                transform: translateY(0%);
+            }
+            50% {
+                transform: translateY(2px);
+            }
+            100% {
+                transform: translateY(0%);
+            }
+        }
+
+        /* Responsive Design */
         @media (max-width: 768px) {
-            .theme-switch {
-                width: 80px;
-                height: 40px;
+            .sidebar {
+                width: 50px;
+                padding-top: 15px;
+                font-size: 14px;
+                margin: 10px 0;
             }
-
-            .theme-switch::before {
-                width: 30px;
-                height: 30px;
-                top: 5px;
-                left: 5px;
+            .container1 {
+                margin-left: 60px;
+                padding: 13px;
             }
-
-            .theme-switch.active::before {
-                left: 43px;
-            }
-
-            header h1{
-                font-size: 1.5rem;
+            .footer {
+                font-size: 16px;
             }
         }
 
         @media (max-width: 480px) {
-            .theme-switch {
-                width: 60px;
-                height: 30px;
+            .sidebar {
+                width: 40px;
+                font-size: 12px;
+                margin: 8px 0;
             }
-
-            .theme-switch::before {
-                width: 20px;
-                height: 20px;
-                top: 5px;
-                left: 5px;
+            .container1 {
+                margin-left: 50px;
+                padding: 7px;
             }
-
-            .theme-switch.active::before {
-                left: 24px;
-            }
-
-            header h1{
-                font-size: 1.2rem;
+            .footer {
+                font-size: 14px;
             }
         }
+
     </style>
 
-    <!-- GENERAL STYLING -->
+    <!-- HEADING'S -->
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: black;;
+        .sdg-heading-container {
+            position: relative;
+            text-align: center;
+            margin-bottom: 0px;
+            z-index: 10;
+            padding: 10px;
+        }
+    
+        .sdg-heading {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 48px;
+            font-weight: 700;
+            color: #34A853;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(199, 198, 192, 0.664);
             margin: 0;
-            box-sizing: border-box;
+            padding: 4px 8px;
+            display: inline-block;
+            transition: all 0.4s ease;
         }
     
-        h3 {
-            font-size: clamp(22px, 3vw, 26px);
-            font-weight: bold;
-            color: #ffc802;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(178, 177, 177, 0.604);
-            word-wrap: break-word;
-        }
-    
-        ul {
-            list-style: square;
-            padding-left: 1.5em;
-            margin: 1.5rem 0;
-        }
-    
-        ul li {
-            font-size: clamp(20px, 2vw, 24px);
-            align-items: center;
-            padding: 0.75em 0.5em;
-            margin: 0.5em 0;
-            color: #2C2C2C;
-            background-color: #F1F3F4;
-            border-radius: 8px;
-            transition: all 0.3s ease;
+        .sdg-heading:hover {
+            color: #2D9147;
+            transform: scale(1.02);
+            transition: all 0.4s ease;
             cursor: pointer;
-            box-sizing: border-box;
-            width: 100%;
-            max-width: 100%;
-            word-wrap: break-word;
+            box-shadow: 2px 2px 8px rgba(255, 203, 61, 0.67);
         }
     
-        ul li:hover {
-            background-color: #34A853;
-            color: #FFFFFF;
-            transform: translateX(10px);
-            box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
+        .swiper-container {
+            position: relative;
+            padding-top: 20px;
         }
     
-        ul li::before {
-            content: "•";
-            color: #1A73E8;
-            font-size: 1.5em;
-            margin-right: 0.5em;
-            vertical-align: middle;
-        }
-    
-        /* Media Queries for Windows Scaling Issues */
-        @media screen and (max-width: 768px) {
-            h3 {
-                font-size: clamp(20px, 3vw, 24px);
+        @media (max-width: 768px) {
+            .sdg-heading {
+                font-size: 32px;
+                padding: 8px 16px;
             }
     
-            ul li {
-                font-size: clamp(18px, 2vw, 22px);
-            }
-        }
-    
-        @media screen and (max-width: 480px) {
-            h3 {
-                font-size: clamp(18px, 3vw, 22px);
+            .sdg-heading-container {
+                top: auto;
+                left: auto;
+                margin-bottom: 10px;
             }
     
-            ul li {
-                font-size: clamp(16px, 2vw, 20px);
+            .swiper-container {
+                padding-top: 10px;
             }
         }
     </style>
@@ -271,15 +238,15 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            height: 50vh;
             overflow: hidden;
-            background: black;
+            background: transparent;
         }
 
         /* Swiper Slide Styling */
         .swiper {
-            width: 80%;
-            height: 300px;
+            width: 82%;
+            height: 250px;
             margin: auto;
         }
 
@@ -415,6 +382,36 @@
                 font-size: clamp(16px, 5vw, 24px); /* Further adjust swiper paragraph font size */
             }
         }
+
+        .swiper-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 15px;
+            object-fit: cover;
+        }
+    </style>
+
+
+    <!-- CURSOR COLOR SELECTION CHANGE -->
+    <style>
+        ::selection {
+            background-color: rgb(255, 204, 112);
+            color: #333;
+        }
+
+        /* For webkit browsers (Chrome, Safari) */
+        ::-moz-selection {
+            background-color: rgb(255, 204, 112);
+            color: #333;
+        }
+
+        /* For Firefox */
+        ::selection {
+            background-color: rgb(255, 204, 112);
+            color: #333;
+        }
+
     </style>
 
     <!-- SCROLL BAR DESIGN -->
@@ -453,515 +450,69 @@
         }
     </style>
 
-    <!-- FOOTER SECTION -->
-    <style>
-
-        /* Footer */
-        footer {
-            background: linear-gradient(43deg, rgb(14, 49, 120) 0%, #34A853 46%, #ffbf00 100%);
-            text-align: center;
-            padding: 40px;
-            /* border-radius: 4px; */
-            display: flex;
-            justify-content: space-around;
-        }
-
-        /* Footer Styling */
-        .footer {
-            display: block;
-            justify-content: space-around;
-            color: white;
-            text-align: center;
-            padding: 20px;
-            font-family: Arial, sans-serif;
-        }
-    
-        /* Email Box */
-        .email-box {
-            display: inline-block;
-            padding: 10px 20px;
-            background: linear-gradient(43deg, #0A1F3E 0%, #1E3A2F 46%, #D4A017 100%);
-            border-radius: 8px;
-            transition: transform 0.5s ease, background 0.7s ease;
-        }
-    
-        /* Email Link */
-        .email-link {
-            color: rgb(109, 255, 255);
-            text-decoration: none;
-            font-weight: bold;
-            display: inline-block;
-            transition: color 0.3s ease;
-        }
-    
-        /* Hover Effects */
-        .email-box:hover {
-            transform: translateY(-6px);
-            background: linear-gradient(43deg, rgb(14, 49, 120) 0%, #34A853 46%, #ffbf00 100%);
-            box-shadow: 5px 5px 15px rgba(255, 205, 55, 0.979);
-        }
-    
-        .email-box:hover .email-link {
-            color: rgb(8, 39, 197);
-        }
-
-    </style>
-
-
-    <!-- FALLING STARS STYLE -->
-    <style>
-        
-        .falling-star {
-            position: absolute;
-            top: -5px;
-            background-color: white;
-            border-radius: 50%;
-            box-shadow: 0px 0px 10px 3px rgba(255, 255, 255, 0.9); /* Increased glow */
-            animation: fall 3s linear forwards;
-            z-index: 1000;
-        }
-
-
-        @keyframes fall {
-            from {
-                transform: translateY(0);
-                opacity: 1;
-            }
-            to {
-                transform: translateY(100vh);
-                opacity: 0;
-            }
-        }
-
-    </style>
-
-
-    <!-- CURSOR COLOR SELECTION CHANGE -->
-    <style>
-        ::selection {
-            background-color: rgb(255, 204, 112);
-            color: #333;
-        }
-
-        /* For webkit browsers (Chrome, Safari) */
-        ::-moz-selection {
-            background-color: rgb(255, 204, 112);
-            color: #333;
-        }
-
-        /* For Firefox */
-        ::selection {
-            background-color: rgb(255, 204, 112);
-            color: #333;
-        }
-
-    </style>
-
-
-    <!-- DROP_DOWN LIST HERE -->
-    <style>
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        /* Floating Button */
-        .floating-button {
-            position: fixed;
-            top: 120px;
-            right: 20px;
-            background-color: #ffc802;
-            color: #2C2C2C;
-            border: none;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            font-size: 24px;
-            cursor: pointer;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-            z-index: 1000;
-        }
-
-        .floating-button:hover {
-            background-color: #ffdd57;
-            transform: scale(1.1);
-        }
-
-        /* Dropdown List */
-        .dropdown-list {
-            position: fixed;
-            top: 140px;
-            right: 20px;
-            background-color: #F1F3F4;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            padding: 10px;
-            display: none;
-            flex-direction: column;
-            gap: 8px;
-            max-width: 250px;
-            width: 90%;
-            z-index: 1000;
-        }
-
-        /* Dropdown Items */
-        .dropdown-item {
-            font-size: 16px;
-            font-weight: bold;
-            color: #2C2C2C;
-            padding: 10px;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .dropdown-item:hover {
-            background-color: #34A853;
-            color: #FFFFFF;
-            transform: translateX(-5px);
-        }
-
-        /* Mobile Responsiveness */
-        @media (max-width: 768px) {
-            .floating-button {
-                top: 60px;
-                right: 10px;
-                width: 40px;
-                height: 40px;
-                font-size: 20px;
-            }
-
-            .dropdown-list {
-                top: 110px;
-                right: 10px;
-                max-width: 90%;
-            }
-
-            .dropdown-item {
-                font-size: 14px;
-                padding: 8px;
-            }
-        }
-
-        /* Dark Mode Adjustments */
-        body.dark-mode .dropdown-list {
-            background-color:#000;
-        }
-
-        body.dark-mode .dropdown-item {
-            color: #E0E0E0;
-        }
-
-        body.dark-mode .dropdown-item:hover {
-            background-color: #d2a835;
-            color: #FFFFFF;
-        }
-    </style>
-
-
-    <!-- SEARCH BUTTON STYLING -->
-    <style>
-        
-        .search-menu {
-            display: flex;
-            align-items: center;
-            max-width: 600px;
-            width: 80%;
-            margin: 20px auto;
-            background-color: #F1F3F4;
-            border-radius: 8px;
-            box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.1);
-            padding: 10px;
-        }
-
-        .search-input {
-            flex: 1;
-            border: none;
-            outline: none;
-            font-size: 16px;
-            padding: 10px;
-            background-color:#386452;
-            color: #2C2C2C;
-            border-radius: 6px;
-        }
-
-        .search-input::placeholder {
-            color: #888;
-            cursor: alias;
-        }
-        
-        .search-button {
-            background-color: #34A853;
-            color: #FFFFFF;
-            border: none;
-            border-radius: 8px;
-            padding: 10px 20px;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        .search-button:hover {
-            background-color: #2D9147;
-            transform: translateY(-2px);
-        }
-
-        /* Tablet Responsiveness */ 
-        @media (max-width: 768px) {
-            .search-menu {
-                flex-direction: column;
-                gap: 10px;
-                padding: 10px;
-            }
-            .search-input {
-                width: 70%;
-                text-align: center;
-                font-size: 14px;
-            }
-            .search-button {
-                width: 70%;
-                padding: 10px;
-                font-size: 14px;
-            }
-        }
-
-        /* Mobile Responsiveness */
-        @media (max-width: 480px) {
-            .search-menu {
-                flex-direction: column;
-                gap: 6px;
-                padding: 6px;
-            }
-            .search-input {
-                width: 70%;
-                text-align: center;
-                font-size: 14px;
-                padding: 6px;
-            }
-            .search-button {
-                width: 70%;
-                padding: 8px;
-                font-size: 14px;
-            }
-        }
-
-    </style>
-
-
-    <!-- HEADING'S -->
-    <style>
-        .sdg-heading-container {
-            position: relative;
-            text-align: center;
-            margin-bottom: 0px;
-            z-index: 10;
-            padding: 10px;
-        }
-    
-        .sdg-heading {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 48px;
-            font-weight: 700;
-            color: #34A853;
-            letter-spacing: 2px;
-            text-shadow: 2px 2px 4px rgba(199, 198, 192, 0.664);
-            margin: 0;
-            padding: 4px 8px;
-            display: inline-block;
-            transition: all 0.4s ease;
-        }
-    
-        .sdg-heading:hover {
-            color: #2D9147;
-            transform: scale(1.02);
-            transition: all 0.4s ease;
-            cursor: pointer;
-            box-shadow: 2px 2px 8px rgba(255, 203, 61, 0.67);
-        }
-    
-        .swiper-container {
-            position: relative;
-            padding-top: 20px;
-        }
-    
-        @media (max-width: 768px) {
-            .sdg-heading {
-                font-size: 32px;
-                padding: 8px 16px;
-            }
-    
-            .sdg-heading-container {
-                top: auto;
-                left: auto;
-                margin-bottom: 10px;
-            }
-    
-            .swiper-container {
-                padding-top: 10px;
-            }
-        }
-    </style>
-
-    <!-- SECTIONS STYLING -->
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-        
-        body {
-            font-family: Arial, sans-serif;
-        }
-        
-        .book {
-            position: relative;
-            border-radius: 10px;
-            width: 100%;
-            max-width: 1000px;
-            height: 395px;
-            background: rgb(200, 80, 192);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #000;
-            transition: transform 0.5s;
-            font-size: 50%;
-            font-weight: bold;
-        }
-        
-        .cover {
-            top: 0;
-            position: absolute;
-            background: linear-gradient(43deg, rgb(14, 49, 120) 0%, #34A853 46%, #ffbf00 100%);
-            width: 100%;
-            height: 100%;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: transform 0.5s;
-            transform-origin: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            /* set text size */
-            font-size: 25%;
-            font-weight: bold;
-        }
-        
-        .book:hover .cover {
-            transform: rotateY(-88deg);
-            box-shadow: 1px 1px 12px rgb(120, 38, 198);
-        }
-        
-        p {
-            font-size: 20px;
-            font-weight: bolder;
-        }
-        
-        #lower_parts {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 15px;
-            padding: 20px;
-            background-color: #f0f0f0;
-        }
-        
-        #lower_parts > div {
-            flex: 1 1 calc(95.33% - 15px);
-            max-width: calc(95.33% - 15px);
-            min-width: 250px;
-            text-align: center;
-            padding: 35px;
-            background-color: #253038;
-            color: white;
-            font-size: 25%;
-            font-weight: bold;
-            border-radius: 10px;
-            box-shadow: 2px 2px 10px rgb(255, 194, 26);
-        }
-
-        /* Tablet View */
-        @media (max-width: 1024px) {
-            #lower_parts > div {
-                flex: 1 1 calc(95.33% - 15px);
-                max-width: calc(95.33% - 15px);
-            }
-        }
-
-        /* Mobile View */
-        @media (max-width: 768px) {
-            #lower_parts {
-                flex-direction: column;
-            }
-            #lower_parts > div {
-                flex: 1 1 100%;
-                max-width: 100%;
-            }
-        }
-
-        /* Mobile View */
-        @media (max-width: 768px) {
-            .book {
-                width: 100%;
-                height: auto;
-                min-height: 250px; /* Adjust height dynamically */
-            }
-            .cover {
-                height: 100%;
-            }
-        }
-
-        /* text manupulation */
-        .book p {
-            font-size: clamp(23px, 3vw, 36px); /* Min 16px, Max 32px */
-            font-weight: bold;
-            text-align: center;
-        }
-
-        .cover p {
-            font-size: clamp(23px, 3vw, 36px);
-        }
-
-        .cover span {
-            font-size: clamp(20px, 2vw, 24px);
-        }
-
-    </style>
-
 
 </head>
 <body>
 
-    <!-- HEADER -->
-    <header>
-        <img src="ecology.gif" alt="Logo" height="5%" width="5%" style="border-radius: 20%;">
-        <h1><em>Buena Comunidad.</em></h1>
-        <div class="theme-switch" onclick="toggleTheme()"></div>
-    </header>
-
-    <!-- FLOATING BUTTON -->
-    <div class="floating-button" id="floatingButton">
-        <span>☰</span>
-    </div>
-
-    <div class="sdg-heading-container">
-        <h1 class="sdg-heading">𝓢𝓾𝓼𝓽𝓪𝓲𝓷𝓪𝓫𝓵𝓮 𝓓𝓮𝓿𝓮𝓵𝓸𝓹𝓶𝓮𝓷𝓽 𝓖𝓸𝓪𝓵𝓼 (𝓢𝓓𝓖)</h1>
-    </div>
-  
-    <!-- DROPDOWN LIST IN BUTTON -->
-    <div class="dropdown-list" id="dropdownList">
-        <div class="dropdown-item" data-action="sdgs">Sustainable Development Goals</div>
-        <div class="dropdown-item" data-action="find-ngos">Find NGOs Near You</div>
-        <div class="dropdown-item" data-action="ngo-experiences">NGO Experiences</div>
-        <div class="dropdown-item" data-action="find-ngos">About Us</div>
-    </div>
     
+    <!-- Toggle Button -->
+    <button id="sidebar-toggle" class="sidebar-toggle">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+            <path d="M3 4h18v2H3V4zm0 7h18v2H3v-2zm0 7h18v2H3v-2z" fill="white"/>
+        </svg>
+    </button>
+
+    <!-- SIDEBAR -->
+    <div class="sidebar" id="sidebar">
+
+        <a href="#home" class="nav-link">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                <path d="M12 2l-12 9h3v11h6v-7h6v7h6v-11h3z" fill="white"/>
+            </svg>
+            <span class="tooltip">Home</span>
+        </a>
+
+        <a href="#about" class="nav-link">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" fill="white"/>
+            </svg>
+            <span class="tooltip">About</span>
+        </a>
+        
+        <a href="past.html" class="nav-link">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                <path d="M3 11h18v2h-18v-2zm0 4h12v2h-12v-2zm0-8h18v2h-18v-2zm14 8h4v2h-4v-2z" fill="white"/>
+            </svg>
+            <span class="tooltip">Past Experiences</span>
+        </a>
+
+        <a href="home.html" class="nav-link">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                <path d="M12 2c5.52 0 10 4.48 10 10s-4.48 10-10 10-10-4.48-10-10 4.48-10 10-10zm-1 14h2v2h-2v-2zm0-10h2v8h-2v-8z" fill="white"/>
+            </svg>
+            <span class="tooltip">SDG's</span>
+        </a>
+
+        <a href="#contact" class="nav-link">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                <path d="M21 6h-18c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2v-8c0-1.1-.9-2-2-2zm-2 4l-7 4-7-4v-2l7 4 7-4v2z" fill="white"/>
+            </svg>
+            <span class="tooltip">Contact</span>
+        </a>
+    </div>
+
+
+
+    <!-- SLIDING CONTENT [PICTURES] -->
+    <div class="container1">
+
+        <img src="https://readme-typing-svg.herokuapp.com/?lines=Welcome+to+Our+Community+👋!!;Together+We+Can+Make+a+Difference!;Fight+Against+Poverty+in+Pakistan!;Support+Education+for+All!;Promote+Healthcare+for+Everyone!;Be+the+Change+You+Want+to+See!&font=Fira%20Code&center=true&width=500&height=50" alt="Typing SVG">
+        <h1>𝙐𝙣𝙞𝙩𝙚𝙙 𝙛𝙤𝙧 𝘾𝙝𝙖𝙣𝙜𝙚❟ 𝙏𝙤𝙜𝙚𝙩𝙝𝙚𝙧 𝙒𝙚 𝙍𝙞𝙨𝙚!</h1>
+        <p>𝐁𝐞 𝐭𝐡𝐞 𝐕𝐨𝐢𝐜𝐞, 𝐁𝐞 𝐭𝐡𝐞 𝐂𝐡𝐚𝐧𝐠𝐞!</p>
+        <p><strong>Your Efforts Can Transform Lives!</strong></p>
+
+    </div>
+
 
     <!-- SDG'S CONTAINER -->
     <div class="container" id="first-head">
@@ -971,124 +522,42 @@
             
             <div class="swiper-wrapper">
                 <div class="swiper-slide">
-                    <h3>1. No Poverty</h3>
-                    <ul>
-                        <li>Eradicate extreme poverty</li>
-                        <li>Equal access to resources</li>
-                    </ul>
+                    <img src="./dis-photo/dis-1.png" alt="image1">
                 </div>
                 <div class="swiper-slide">
-                    <h3>2. Zero Hunger</h3>
-                    <ul>
-                        <li>Improve food security</li>
-                        <li>Sustainable agriculture</li>
-                    </ul>
+                    <img src="./dis-photo/dis-2.png" alt="image2">
                 </div>
                 <div class="swiper-slide">
-                    <h3>3. Good Health & Well-being</h3>
-                    <ul>
-                        <li>Universal healthcare</li>
-                        <li>Reduce mortality rates</li>
-                    </ul>
+                    <img src="./dis-photo/dis-3.png" alt="image3">
                 </div>
                 <div class="swiper-slide">
-                    <h3>4. Quality Education</h3>
-                    <ul>
-                        <li>Free primary & secondary education</li>
-                        <li>Equal access to learning</li>
-                    </ul>
+                    <img src="./dis-photo/dis-4.png" alt="image4">
                 </div>
                 <div class="swiper-slide">
-                    <h3>5. Gender Equality</h3>
-                    <ul>
-                        <li>Women's rights & empowerment</li>
-                        <li>Equal opportunities</li>
-                    </ul>
+                    <img src="./dis-photo/dis-5.png" alt="image5">
                 </div>
                 <div class="swiper-slide">
-                    <h3>6. Clean Water & Sanitation</h3>
-                    <ul>
-                        <li>Safe drinking water</li>
-                        <li>Sanitation for all</li>
-                    </ul>
+                    <img src="./dis-photo/dis-6.png" alt="image6">
                 </div>
                 <div class="swiper-slide">
-                    <h3>7. Affordable & Clean Energy</h3>
-                    <ul>
-                        <li>Access to renewable energy</li>
-                        <li>Reduce fossil fuel reliance</li>
-                    </ul>
+                    <img src="./dis-photo/dis-7.png" alt="image7">
                 </div>
                 <div class="swiper-slide">
-                    <h3>8. Decent Work & Economic Growth</h3>
-                    <ul>
-                        <li>Employment opportunities</li>
-                        <li>Sustainable economic growth</li>
-                    </ul>
+                    <img src="./dis-photo/dis-8.png" alt="image8">
                 </div>
                 <div class="swiper-slide">
-                    <h3>9. Industry, Innovation & Infrastructure</h3>
-                    <ul>
-                        <li>Resilient infrastructure</li>
-                        <li>Foster innovation</li>
-                    </ul>
+                    <img src="./dis-photo/dis-9.png" alt="image9">
                 </div>
                 <div class="swiper-slide">
-                    <h3>10. Reduced Inequalities</h3>
-                    <ul>
-                        <li>Social & economic inclusion</li>
-                        <li>Fair policies for all</li>
-                    </ul>
+                    <img src="./dis-photo/dis-10.png" alt="image10">
                 </div>
                 <div class="swiper-slide">
-                    <h3>11. Sustainable Cities & Communities</h3>
-                    <ul>
-                        <li>Affordable housing</li>
-                        <li>Green urban spaces</li>
-                    </ul>
+                    <img src="./dis-photo/dis-11.png" alt="image11">
                 </div>
                 <div class="swiper-slide">
-                    <h3>12. Responsible Consumption,Production</h3>
-                    <ul>
-                        <li>Reduce waste</li>
-                        <li>Promote recycling</li>
-                    </ul>
+                    <img src="./dis-photo/dis-12.jpg" alt="image12">
                 </div>
-                <div class="swiper-slide">
-                    <h3>13. Climate Action</h3>
-                    <ul>
-                        <li>Reduce carbon footprint</li>
-                        <li>Strengthen climate resilience</li>
-                    </ul>
-                </div>
-                <div class="swiper-slide">
-                    <h3>14. Life Below Water</h3>
-                    <ul>
-                        <li>Protect marine life</li>
-                        <li>Reduce ocean pollution</li>
-                    </ul>
-                </div>
-                <div class="swiper-slide">
-                    <h3>15. Life on Land</h3>
-                    <ul>
-                        <li>Combat deforestation</li>
-                        <li>Protect biodiversity</li>
-                    </ul>
-                </div>
-                <div class="swiper-slide">
-                    <h3>16. Peace, Justice & Strong Institutions</h3>
-                    <ul>
-                        <li>Promote justice & human rights</li>
-                        <li>End corruption</li>
-                    </ul>
-                </div>
-                <div class="swiper-slide">
-                    <h3>17. Partnerships for the Goals</h3>
-                    <ul>
-                        <li>Global collaboration</li>
-                        <li>Strengthen global partnerships</li>
-                    </ul>
-                </div>
+                
             </div>
                         
 
@@ -1101,251 +570,10 @@
     </div>
 
 
-    <!-- SEARCH BUTTON -->
-    <div class="search-menu">
-        <input type="text" class="search-input" placeholder="Search for NGOs or locations...">
-        <button class="search-button">Search</button>
+    <!-- Footer -->
+    <div class="footer">
+        𝘽𝙚 𝙖 𝙡𝙞𝙜𝙝𝙩 𝙛𝙤𝙧 𝙩𝙝𝙚 𝙨𝙪𝙛𝙛𝙚𝙧𝙞𝙣𝙜 𝙝𝙪𝙢𝙖𝙣𝙞𝙩𝙮 𝙞𝙣 𝙩𝙝𝙚 𝙬𝙤𝙧𝙡𝙙.
     </div>
-
-    <hr style="width: 70%; height: 4px; background: linear-gradient(43deg, rgb(14, 49, 120) 0%, #34A853 46%, #ffbf00 100%);; border: none; border-radius: 5px; margin: 20px auto;">
-    
-    <!-- EXPERIENCE SECTION DEFINITION -->
-    <div id="section1" style="display: flex; justify-content: space-around; align-items: center; text-align: center; padding: 20px; background: linear-gradient(43deg, #0A1F3E 0%, #1E3A2F 46%, #D4A017 100%);">
-        <p style="font-size: 30px; font-weight: bold; color: #1f9410; text-transform: uppercase; margin: 0;">
-            <u>𝓟𝓻𝓮𝓿𝓲𝓸𝓾𝓼 𝓔𝔁𝓹𝓮𝓻𝓲𝓮𝓷𝓬𝓮𝓼</u> 
-        </p>
-        <p style="font-size: 30px; color: #fcc92e; font-family: 'Noto Nastaliq Urdu', serif; margin: 0;">
-            { 𝒩ℴ𝓉𝒶𝒷𝓁ℯ 𝒩𝒢𝒪'𝓈 }
-        </p>
-    </div>
-
-    <!-- EXPERIENCES SECTION DETAILS -->
-    <div id="lower_parts">
-        
-        <!-- FIRST -->
-        <div class="book">
-            <p>
-                <span>
-                    contact and other relevant info here.
-                </span>
-                <br>
-            </p>
-            <div class="cover">
-                <p>Project Title<br> <span>( NGO name )</span></p>
-            </div>
-            <!-- just randomly added here, bad me update ho jay ga -->
-            <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.8354345093747!2d144.95373531531664!3d-37.816279742021665!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642af0f11fd81%3A0xf577d2d2f2f1c1b0!2sFederation%20Square!5e0!3m2!1sen!2sus!4v1622549400000!5m2!1sen!2sus" 
-                width="40%" 
-                height="85%" 
-                style="border:0;" 
-                allowfullscreen="" 
-                loading="lazy">
-            </iframe>
-        </div>
-
-        <!-- SECOND -->
-        <div class="book">
-            <p>
-                <span>
-                    contact and other relevant info here.
-                </span>
-                <br>
-            </p>
-            <div class="cover">
-                <p>Project Title<br> <span>( NGO name )</span></p>
-            </div>
-            <!-- just randomly added here, bad me update ho jay ga -->
-            <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.8354345093747!2d144.95373531531664!3d-37.816279742021665!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642af0f11fd81%3A0xf577d2d2f2f1c1b0!2sFederation%20Square!5e0!3m2!1sen!2sus!4v1622549400000!5m2!1sen!2sus" 
-                width="40%" 
-                height="85%" 
-                style="border:0;" 
-                allowfullscreen="" 
-                loading="lazy">
-            </iframe>
-        </div>
-
-        <!-- THIRD -->
-        <div class="book">
-            <p>
-                <span>
-                    contact and other relevant info here.
-                </span>
-                <br>
-            </p>
-            <div class="cover">
-                <p>Project Title<br> <span>( NGO name )</span></p>
-            </div>
-            <!-- just randomly added here, bad me update ho jay ga -->
-            <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.8354345093747!2d144.95373531531664!3d-37.816279742021665!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642af0f11fd81%3A0xf577d2d2f2f1c1b0!2sFederation%20Square!5e0!3m2!1sen!2sus!4v1622549400000!5m2!1sen!2sus" 
-                width="40%" 
-                height="85%" 
-                style="border:0;" 
-                allowfullscreen="" 
-                loading="lazy">
-            </iframe>
-        </div>
-
-        <!-- FOURTH -->
-        <div class="book">
-            <p>
-                <span>
-                    contact and other relevant info here.
-                </span>
-                <br>
-            </p>
-            <div class="cover">
-                <p>Project Title<br> <span>( NGO name )</span></p>
-            </div>
-            <!-- just randomly added here, bad me update ho jay ga -->
-            <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.8354345093747!2d144.95373531531664!3d-37.816279742021665!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642af0f11fd81%3A0xf577d2d2f2f1c1b0!2sFederation%20Square!5e0!3m2!1sen!2sus!4v1622549400000!5m2!1sen!2sus" 
-                width="40%" 
-                height="85%" 
-                style="border:0;" 
-                allowfullscreen="" 
-                loading="lazy">
-            </iframe>
-        </div>
-
-        <!-- FIFTH -->
-        <div class="book">
-            <p>
-                <span>
-                    contact and other relevant info here.
-                </span>
-                <br>
-            </p>
-            <div class="cover">
-                <p>Project Title<br> <span>( NGO name )</span></p>
-            </div>
-            <!-- just randomly added here, bad me update ho jay ga -->
-            <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.8354345093747!2d144.95373531531664!3d-37.816279742021665!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642af0f11fd81%3A0xf577d2d2f2f1c1b0!2sFederation%20Square!5e0!3m2!1sen!2sus!4v1622549400000!5m2!1sen!2sus" 
-                width="40%" 
-                height="85%" 
-                style="border:0;" 
-                allowfullscreen="" 
-                loading="lazy">
-            </iframe>
-        </div>
-
-        <!-- SIXTH -->
-        <div class="book">
-            <p>
-                <span>
-                    contact and other relevant info here.
-                </span>
-                <br>
-            </p>
-            <div class="cover">
-                <p>Project Title<br> <span>( NGO name )</span></p>
-            </div>
-            <!-- just randomly added here, bad me update ho jay ga -->
-            <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.8354345093747!2d144.95373531531664!3d-37.816279742021665!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642af0f11fd81%3A0xf577d2d2f2f1c1b0!2sFederation%20Square!5e0!3m2!1sen!2sus!4v1622549400000!5m2!1sen!2sus" 
-                width="40%" 
-                height="85%" 
-                style="border:0;" 
-                allowfullscreen="" 
-                loading="lazy">
-            </iframe>
-        </div>
-
-        <!-- SEVENTH -->
-        <div class="book">
-            <p>
-                <span>
-                    contact and other relevant info here.
-                </span>
-                <br>
-            </p>
-            <div class="cover">
-                <p>Project Title<br> <span>( NGO name )</span></p>
-            </div>
-            <!-- just randomly added here, bad me update ho jay ga -->
-            <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.8354345093747!2d144.95373531531664!3d-37.816279742021665!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642af0f11fd81%3A0xf577d2d2f2f1c1b0!2sFederation%20Square!5e0!3m2!1sen!2sus!4v1622549400000!5m2!1sen!2sus" 
-                width="40%" 
-                height="85%" 
-                style="border:0;" 
-                allowfullscreen="" 
-                loading="lazy">
-            </iframe>
-        </div>
-
-        <!-- EIGHTH -->
-        <div class="book">
-            <p>
-                <span>
-                    contact and other relevant info here.
-                </span>
-                <br>
-            </p>
-            <div class="cover">
-                <p>Project Title<br> <span>( NGO name )</span></p>
-            </div>
-            <!-- just randomly added here, bad me update ho jay ga -->
-            <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.8354345093747!2d144.95373531531664!3d-37.816279742021665!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642af0f11fd81%3A0xf577d2d2f2f1c1b0!2sFederation%20Square!5e0!3m2!1sen!2sus!4v1622549400000!5m2!1sen!2sus" 
-                width="40%" 
-                height="85%" 
-                style="border:0;" 
-                allowfullscreen="" 
-                loading="lazy">
-            </iframe>
-        </div>
-
-        <!-- NINETH -->
-        <div class="book">
-            <p>
-                <span>
-                    contact and other relevant info here.
-                </span>
-                <br>
-            </p>
-            <div class="cover">
-                <p>Project Title<br> <span>( NGO name )</span></p>
-            </div>
-            <!-- just randomly added here, bad me update ho jay ga -->
-            <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.8354345093747!2d144.95373531531664!3d-37.816279742021665!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642af0f11fd81%3A0xf577d2d2f2f1c1b0!2sFederation%20Square!5e0!3m2!1sen!2sus!4v1622549400000!5m2!1sen!2sus" 
-                width="40%" 
-                height="85%" 
-                style="border:0;" 
-                allowfullscreen="" 
-                loading="lazy">
-            </iframe>
-        </div>
-
-    </div>
-
-
-    <!-- FOOTER -->
-    <footer>
-            
-        <div class="maintain">
-            <!-- Email Box -->
-            <div class="email-box">
-                <p><em>Contact us:</em>  
-                    <a href="mailto:ab.zarinc@gmail.com" class="email-link">ab.zarinc@gmail.com</a>
-                </p>
-            </div>
-
-            <hr style="width: 70%; height: 4px; background: linear-gradient(43deg, rgb(14, 49, 120) 0%, #34A853 46%, #ffbf00 100%);; border: none; border-radius: 5px; margin: 20px auto;">
-
-            <div>
-                <p>&copy; <span>2025 ZAR.INC All rights reserved.</span></p>
-            </div>
-        </div>
-    
-    
-    </footer>
-
-
-    <!-- =========================={ SCRIPTING BELOW THIS MARK. }============================== -->
 
 
     <!-- CALLING SWIPER JS -->
@@ -1428,158 +656,26 @@
         });
     </script>
 
-    <!-- THEME TOGGLE -->
+    <!-- TOGGLE SECTION -->
     <script>
-        function toggleTheme() {
-            document.body.classList.toggle("dark-mode");
-            document.querySelector(".theme-switch").classList.toggle("active");
-        }
-    </script>
+        const sidebarToggle = document.getElementById('sidebar-toggle');
+        const sidebar = document.getElementById('sidebar');
 
-    
-    <!-- FALLING STAR ANIMATION -->
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            
-            // ERROR HANDLING, IF IN CASE CONTAINER IS MISSING
-            const container = document.querySelector(".container");
-            if(!container){
-                console.error("Container not found!");
-                return;
-            }
-
-            function MAKE_STARS(){
-                const star = document.createElement("div");
-                star.classList.add("falling-star");
-
-                const size = Math.random() * 3 + 3;
-                const startPosX = Math.random() * window.innerWidth;
-                const duration = Math.random() * 3 + 6;
-
-                star.style.width = `${size}px`;
-                star.style.height = `${size}px`;
-                star.style.left = `${startPosX}px`;
-                star.style.animationDuration = `${duration}s`;
-
-                container.appendChild(star);
-                // console.log("Star created at X:", startPosX);
-
-                setTimeout(() => {
-                    star.remove();
-                }, duration * 2500);
-            }
-
-            function GEN_STARS() {
-                setInterval(MAKE_STARS, 200);
-            }
-
-            GEN_STARS();
-        });
-    </script>
-
-
-    <!-- UNORDERED LIST -->
-    <script>
-
-        const floatingButton = document.getElementById('floatingButton');
-        const dropdownList = document.getElementById('dropdownList');
-
-        floatingButton.addEventListener('click', () => {
-            if (dropdownList.style.display === 'flex') {
-                dropdownList.style.display = 'none';
-            } else {
-                dropdownList.style.display = 'flex';
-            }
+        // HANDLE INSIDE CLICK (P(E))
+        sidebarToggle.addEventListener('click', (event) => {
+            event.stopPropagation(); // Prevents immediate closing when clicking the toggle button
+            sidebar.classList.toggle('active');
         });
 
-        // Close dropdown when clicking outside
+        // HANDLE OUTSIDE CLICK ( 1 - P(E))
         document.addEventListener('click', (event) => {
-            if (!floatingButton.contains(event.target) && !dropdownList.contains(event.target)) {
-                dropdownList.style.display = 'none';
-            }
-        });
-
-        // Add actions to dropdown items
-        const dropdownItems = document.querySelectorAll('.dropdown-item');
-            dropdownItems.forEach(item => {
-            item.addEventListener('click', () => {
-                const action = item.getAttribute('data-action');
-                handleAction(action);
-                dropdownList.style.display = 'none';
-            });
-        });
-
-        // Action handler function
-        function handleAction(action) {
-            switch (action) {
-                case 'community':{
-                    window.location.href = '#first-head';
-                    break;
-                }
-                case 'ngo-experiences':{
-                    // alert('Navigating to NGO Experiences section...');
-                    window.location.href = '#first-head';
-                    break;
-                }
-                case 'find-ngos':{
-                    //alert('Opening NGO Finder...');
-                    window.location.href = '#first-head';
-                    break;
-                }
-                case 'sdgs':{
-                    //alert('Navigating to Sustainable Development Goals section...');
-                    window.location.href = '#first-head';
-                    break;
-                }
-                default:{
-                    console.log('No action defined for:', action);
-                    break;
-                }
-            }
-        }
-    </script>
-
-
-    <!-- NOT-SEARCH FUNCTIONALITY -->
-    <script>
-        document.querySelector('.search-button').addEventListener('click', () => {
-            const query = document.querySelector('.search-input').value;
-            if (query){
-                alert('Searching for:', query);
+            if (!sidebar.contains(event.target) && !sidebarToggle.contains(event.target)) {
+                sidebar.classList.remove('active');
             }
         });
     </script>
 
-    <!-- STOP RIGHT CLICK. -->
-    <script>
-        document.addEventListener("contextmenu", function(event) {
-            event.preventDefault();
-        });
-    </script>
 
-
-    <!-- DISABLE ALL THE KEYBOARD SHORTCUTS [FOR NON TECHNICAL PEOPLE, TECHNICAL PEOPLE DO HAVE ACCESS USING ADVANCE TOOLS] -->
-    <script>
-        document.addEventListener("keydown", function(event) {
-            if (event.ctrlKey && (event.key === "u" || event.key === "s" || event.key === "i" || event.key === "j")) {
-                event.preventDefault();
-            }
-            if (event.key === "F12") {
-                event.preventDefault();
-            }
-        });
-
-        document.addEventListener("keydown", function(event) {
-            if (
-                (event.ctrlKey && event.shiftKey && (event.key === "I" || event.key === "J" || event.key === "C")) || // Ctrl+Shift+I/J/C
-                (event.ctrlKey && event.key === "U") || // Ctrl+U
-                (event.key === "F12") // F12
-            ) {
-                event.preventDefault();
-            }
-        });
-    </script>
-    
 
 </body>
 </html>
